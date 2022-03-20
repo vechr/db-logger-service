@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { DBLoggerModule } from './db-logger/db-logger.module';
 
 @Module({
-  imports: [],
+  imports: [DBLoggerModule],
 })
 export class AppModule {}
