@@ -9,4 +9,14 @@ export class DBLoggerController {
   hello() {
     return this.dbLoggerService.hello();
   }
+
+  @Get('write')
+  writeDB() {
+    return this.dbLoggerService.writeDB();
+  }
+
+  @Get('query')
+  queryDB() {
+    return this.dbLoggerService.queryDB();
+  }
 }
