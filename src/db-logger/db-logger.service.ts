@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import {InfluxDB, Point} from '@influxdata/influxdb-client'
+import { DBLoggerDto } from "./dto";
 
 @Injectable({})
 export class DBLoggerService {
@@ -21,7 +22,7 @@ export class DBLoggerService {
 
     const point = new Point(topic)
     .tag('deviceId', deviceId)
-    .tag('projectId', dashboardId)
+    .tag('dashboardId', dashboardId)
     .stringField('value', value);
     writeApi.writePoint(point);
 
@@ -36,50 +37,15 @@ export class DBLoggerService {
       });
   }
 
-  //***************************************************DUMMY as Below Example:************************************************************//
-
-  queryDBTopic(topic: string): any {
+  queryDBTopic(dto: DBLoggerDto): any {
     const queryApi = new InfluxDB({url: this.url, token: this.token}).getQueryApi(this.org);
-
-    const fluxQuery: string = `from(bucket: "${this.bucket}") |> range(start: 0) |> filter(fn: (r) => r._measurement == "${topic}")`;
-
-    return queryApi
-    .collectRows(fluxQuery)
-    .then(data => {
-      console.log('Success Collect Rows!');
-      return data;
-    })
-    .catch(error => {
-      console.error(error)
-      return 'Failed Collect Rows!';
-    })
-  }
-
-  writeDB(): any {
-    const influxDB = new InfluxDB({url: this.url, token: this.token});
-    const writeApi = influxDB.getWriteApi(this.org, this.bucket);
-
-    writeApi.useDefaultTags({region: 'west'});
-    const point = new Point('temperature')
-    .tag('sensor_id', 'TLM010')
-    .floatField('value', 24);
-    writeApi.writePoint(point);
-
-    return writeApi
-      .close()
-      .then(() => {
-        return 'Success Write data!';
-      })
-      .catch(e => {
-        console.error(e)
-        return 'Failed write data!';
-      });
-  }
-
-  queryDB(): any {
-    const queryApi = new InfluxDB({url: this.url, token: this.token}).getQueryApi(this.org);
-
-    const fluxQuery: string = `from(bucket: "${this.bucket}") |> range(start: 0) |> filter(fn: (r) => r._measurement == "temperature")`;
+    
+    const fluxQuery: string = 
+      `from(bucket: "${this.bucket}") 
+      |> range(start: 0)
+      |> filter(fn: (r) => r._measurement == "${dto.topic}")
+      |> filter(fn: (r) => r.dashboardId == "${dto.dashboardId}")
+      |> filter(fn: (r) => r.deviceId == "${dto.deviceId}")`;
 
     return queryApi
     .collectRows(fluxQuery)
