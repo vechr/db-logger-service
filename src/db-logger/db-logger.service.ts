@@ -15,6 +15,46 @@ export class DBLoggerService {
     return "Hallo ini db-logger-microservices"
   }
 
+  writeDBTopic(dashboardId: string, deviceId: string, topic: string, value: string): any {
+    const influxDB = new InfluxDB({url: this.url, token: this.token});
+    const writeApi = influxDB.getWriteApi(this.org, this.bucket);
+
+    const point = new Point(topic)
+    .tag('deviceId', deviceId)
+    .tag('projectId', dashboardId)
+    .stringField('value', value);
+    writeApi.writePoint(point);
+
+    return writeApi
+      .close()
+      .then(() => {
+        return 'Success Write data like topic!';
+      })
+      .catch(e => {
+        console.error(e)
+        return 'Failed write data!';
+      });
+  }
+
+  //***************************************************DUMMY as Below Example:************************************************************//
+
+  queryDBTopic(topic: string): any {
+    const queryApi = new InfluxDB({url: this.url, token: this.token}).getQueryApi(this.org);
+
+    const fluxQuery: string = `from(bucket: "${this.bucket}") |> range(start: 0) |> filter(fn: (r) => r._measurement == "${topic}")`;
+
+    return queryApi
+    .collectRows(fluxQuery)
+    .then(data => {
+      console.log('Success Collect Rows!');
+      return data;
+    })
+    .catch(error => {
+      console.error(error)
+      return 'Failed Collect Rows!';
+    })
+  }
+
   writeDB(): any {
     const influxDB = new InfluxDB({url: this.url, token: this.token});
     const writeApi = influxDB.getWriteApi(this.org, this.bucket);
