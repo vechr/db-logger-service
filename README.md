@@ -1,8 +1,10 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="" target="blank"><img src="https://svgshare.com/i/fmL.svg" width="320" alt="kreMES Logo" /></a>
 </p>
 
 
-## Description
-
-This app is used for write the data into influxdb
+# Running DB Logger Service
+```bash
+yarn install
+yarn watch
+```

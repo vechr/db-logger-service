@@ -1,16 +1,15 @@
-import { IsNotEmpty, IsString } from "class-validator"
-
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class DBLoggerDto {
   @IsString()
   @IsNotEmpty()
-  dashboardId: string
+  dashboardId: string;
 
   @IsString()
   @IsNotEmpty()
-  deviceId: string
+  deviceId: string;
 
   @IsString()
   @IsNotEmpty()
-  topic: string
+  topic: string;
 }

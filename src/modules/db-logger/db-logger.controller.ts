@@ -1,0 +1,29 @@
+import { Controller, UseFilters } from '@nestjs/common';
+import { Ctx, EventPattern, NatsContext, Payload } from '@nestjs/microservices';
+import { DBLoggerService } from './db-logger.service';
+import { DBLoggerDto } from './dto';
+import { ExceptionFilter } from '../../shared/filters/rpc-exception.filter';
+
+@Controller()
+export class DBLoggerController {
+  constructor(private readonly dbLoggerService: DBLoggerService) {}
+
+  @UseFilters(new ExceptionFilter())
+  @EventPattern('kreMES.DashboardID.*.DeviceID.*.topic.*')
+  writeDBTopic(@Payload() data: any, @Ctx() context: NatsContext) {
+    const subjectParses: string[] = context.getSubject().split('.');
+    console.log(`Subject: ${context.getSubject()} and data: ${data}`);
+    return this.dbLoggerService.writeDBTopic(
+      subjectParses[2],
+      subjectParses[4],
+      subjectParses[6],
+      data,
+    );
+  }
+
+  @UseFilters(new ExceptionFilter())
+  @EventPattern('getData.query')
+  queryDBTopic(@Payload() dto: DBLoggerDto) {
+    return this.dbLoggerService.queryDBTopic(dto);
+  }
+}
