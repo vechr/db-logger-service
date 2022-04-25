@@ -14,8 +14,9 @@ export class DBLoggerService {
   writeDBTopic(
     dashboardId: string,
     deviceId: string,
+    topicId: string,
     topic: string,
-    value: string,
+    value: any,
   ): any {
     const influxDB = new InfluxDB({ url: this.url, token: this.token });
     const writeApi = influxDB.getWriteApi(this.org, this.bucket);
@@ -23,6 +24,7 @@ export class DBLoggerService {
     const point = new Point(topic)
       .tag('deviceId', deviceId)
       .tag('dashboardId', dashboardId)
+      .tag('topicId', topicId)
       .stringField('value', value);
     writeApi.writePoint(point);
 
@@ -46,6 +48,7 @@ export class DBLoggerService {
     const fluxQuery: string = `from(bucket: "${this.bucket}") 
       |> range(start: 0)
       |> filter(fn: (r) => r._measurement == "${dto.topic}")
+      |> filter(fn: (r) => r.topicId == "${dto.topicId}")
       |> filter(fn: (r) => r.dashboardId == "${dto.dashboardId}")
       |> filter(fn: (r) => r.deviceId == "${dto.deviceId}")`;
 

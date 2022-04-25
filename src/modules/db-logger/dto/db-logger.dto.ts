@@ -11,5 +11,9 @@ export class DBLoggerDto {
 
   @IsString()
   @IsNotEmpty()
+  topicId: string;
+
+  @IsString()
+  @IsNotEmpty()
   topic: string;
 }
