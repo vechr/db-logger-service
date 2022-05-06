@@ -25,7 +25,7 @@ export class DBLoggerService {
       .tag('deviceId', deviceId)
       .tag('dashboardId', dashboardId)
       .tag('topicId', topicId)
-      .stringField('value', value);
+      .stringField('value', JSON.stringify(value));
     writeApi.writePoint(point);
 
     return writeApi
