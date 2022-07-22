@@ -25,7 +25,7 @@
     "env-var": "^7.1.1",
     "nats": "^2.6.1",
     "pino": "^7.10.0",
-    "pino-http": "^6.6.0",
+    "pino-http": "^8.1.1",
     "pino-pretty": "^7.6.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
