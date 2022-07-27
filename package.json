@@ -24,7 +24,7 @@
     "dotenv": "^16.0.0",
     "env-var": "^7.1.1",
     "nats": "^2.6.1",
-    "pino": "^7.10.0",
+    "pino": "^8.3.1",
     "pino-http": "^6.6.0",
     "pino-pretty": "^7.6.1",
     "reflect-metadata": "^0.1.13",
