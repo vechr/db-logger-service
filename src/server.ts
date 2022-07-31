@@ -4,6 +4,10 @@ import { HttpModule } from './http.module';
 import appConstant from '@/constants/constant';
 import log from './shared/utils/log.util';
 import { NatsModule } from './nats.module';
+import { InfluxService } from './modules/services/influx.service';
+import { InfluxHelper } from './shared/helpers/influx.helper';
+import { NatsHelper } from './shared/helpers/nats.helper';
+import { NatsService } from './modules/services/nats.service';
 
 const httpServer = new Promise(async (resolve, reject) => {
   try {
@@ -46,4 +50,7 @@ const natsServer = new Promise(async (resolve, reject) => {
 
 (async function () {
   await Promise.all([httpServer, natsServer]);
+  const influxService = new InfluxService(await InfluxHelper.getConnection())
+  const natsService = new NatsService(await NatsHelper.getConnection(), influxService)
+  await natsService.subscribe("kreMES.DashboardID.*.DeviceID.*.TopicID.*.Topic.>");
 })();
