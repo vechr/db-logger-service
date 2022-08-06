@@ -1,4 +1,4 @@
-import { EWidget, IBubble, IScatter } from '@/shared/types/index';
+import { EWidget, IBubble, IMaps, IScatter } from '@/shared/types/index';
 
 type LogPayload = string | Record<string, any>;
 
@@ -40,6 +40,11 @@ export class ValidationHelper {
           this.log.error("Data wouldn't be store, since type is not Bubble");
           return false;
         }
+      } else if (widgetType === EWidget.MAPS) {
+        if (!this.isMaps(JSON.parse(data))) {
+          this.log.error("Data wouldn't be store, since type is not Maps");
+          return false;
+        }
       }
 
       return true;
@@ -55,5 +60,9 @@ export class ValidationHelper {
 
   private isBubble(data: any): data is IBubble {
     return 'r' in data && 'y' in data && 'r' in data;
+  }
+
+  private isMaps(data: any): data is IMaps {
+    return 'latitude' in data && 'longitude' in data;
   }
 }
