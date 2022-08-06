@@ -7,7 +7,7 @@ import { InfluxHelper } from '@/shared/helpers/influx.helper';
 
 @Injectable({})
 export class DBLoggerService {
-  private readonly influx: Promise<InfluxDB> = InfluxHelper.getConnection()
+  private readonly influx: Promise<InfluxDB> = InfluxHelper.getConnection();
   private readonly org: string = appConstant.INFLUX_ORG;
   private readonly bucket: string = appConstant.INFLUX_BUCKET;
 

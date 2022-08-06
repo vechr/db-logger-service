@@ -1,4 +1,4 @@
-enum EWidget{
+export enum EWidget {
   BAR = 'BAR',
   BUBBLE = 'BUBBLE',
   DOUGHNUT = 'DOUGHNUT',
@@ -8,5 +8,5 @@ enum EWidget{
   POLAR = 'POLAR',
   RADAR = 'RADAR',
   SCATTER = 'SCATTER',
-  MAPS = 'MAPS'
+  MAPS = 'MAPS',
 }

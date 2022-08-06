@@ -1,11 +1,16 @@
-import { connect, ConnectionOptions, NatsConnection, SubscriptionOptions } from "nats";
-import appConfig from '@/constants/constant'
+import {
+  connect,
+  ConnectionOptions,
+  NatsConnection,
+  SubscriptionOptions,
+} from 'nats';
+import appConfig from '@/constants/constant';
 export class NatsHelper {
   private static _config: ConnectionOptions = { servers: appConfig.NATS_URL };
-  private _subsOptions: SubscriptionOptions = { max: 10 }
+  private _subsOptions: SubscriptionOptions = { max: 10 };
 
   static async getConnection(): Promise<NatsConnection> {
-   return await connect(this._config);
+    return await connect(this._config);
   }
 
   public static setConfig(data: ConnectionOptions) {

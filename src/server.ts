@@ -8,6 +8,7 @@ import { InfluxService } from './modules/services/influx.service';
 import { InfluxHelper } from './shared/helpers/influx.helper';
 import { NatsHelper } from './shared/helpers/nats.helper';
 import { NatsService } from './modules/services/nats.service';
+import { ValidationHelper } from './shared/helpers/validation.helper';
 
 const httpServer = new Promise(async (resolve, reject) => {
   try {
@@ -50,8 +51,14 @@ const natsServer = new Promise(async (resolve, reject) => {
 
 (async function () {
   await Promise.all([httpServer, natsServer]);
-  const influxService = new InfluxService(await InfluxHelper.getConnection())
-  const natsService = new NatsService(await NatsHelper.getConnection(), influxService)
-  await natsService.createBucket("kremes_topics", { history: 5 })
-  await natsService.subscribe("kreMES.DashboardID.*.DeviceID.*.TopicID.*.Topic.>");
+  const influxService = new InfluxService(await InfluxHelper.getConnection());
+  const natsService = new NatsService(
+    await NatsHelper.getConnection(),
+    influxService,
+    new ValidationHelper(log),
+  );
+  await natsService.createBucket('kremes_topics', { history: 5 });
+  await natsService.subscribe(
+    'kreMES.DashboardID.*.DeviceID.*.TopicID.*.Topic.>',
+  );
 })();

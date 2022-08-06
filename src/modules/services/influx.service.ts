@@ -1,18 +1,20 @@
-import { InfluxDB, Point } from "@influxdata/influxdb-client";
-import appConfig from '@/constants/constant'
+import { InfluxDB, Point } from '@influxdata/influxdb-client';
+import appConfig from '@/constants/constant';
 
 export class InfluxService {
-  constructor(
-    private readonly influx: InfluxDB
-  ) { }
+  constructor(private readonly influx: InfluxDB) {}
 
   writeDBTopic(
     dashboardId: string,
     deviceId: string,
     topicId: string,
     topic: string,
-    value: any): any {
-    const writeAPI = this.influx.getWriteApi(appConfig.INFLUX_ORG, appConfig.INFLUX_BUCKET)
+    value: any,
+  ): any {
+    const writeAPI = this.influx.getWriteApi(
+      appConfig.INFLUX_ORG,
+      appConfig.INFLUX_BUCKET,
+    );
 
     const point = new Point(topic)
       .tag('deviceId', deviceId)
