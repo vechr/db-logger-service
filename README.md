@@ -8,3 +8,10 @@
 yarn install
 yarn watch
 ```
+
+# Nats Subjects
+*kreMES.DashboardID.**DashboardId**.DeviceID.**DeviceId**.TopicID.**TopicId**.Topic.**YourTopicNested1**.**YourTopicNested2***
+
+# MQTT Topics
+
+*kreMES/DashboardID/**DashboardId**/DeviceID/**DeviceId**/TopicID/**TopicId**/Topic/**YourTopicNested1**/**YourTopicNested2***
