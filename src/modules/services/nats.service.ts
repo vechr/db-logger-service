@@ -65,14 +65,7 @@ export class NatsService {
           continue;
         }
 
-        if (NatsService.topicData.widgetType === undefined) continue;
-
-        if (
-          this.validationTopic.validation(
-            NatsService.topicData.widgetType,
-            data,
-          )
-        ) {
+        if (NatsService.topicData.widgetType === undefined) {
           log.info(
             await this.influxService.writeDBTopic(
               subjectParses[2],
@@ -82,9 +75,26 @@ export class NatsService {
               data,
             ),
           );
-
-          // Set kembali ke undefined
-          NatsService.topicData = undefined;
+        } else {
+          if (
+            this.validationTopic.validation(
+              NatsService.topicData.widgetType,
+              data,
+            )
+          ) {
+            log.info(
+              await this.influxService.writeDBTopic(
+                subjectParses[2],
+                subjectParses[4],
+                subjectParses[6],
+                topic,
+                data,
+              ),
+            );
+  
+            // Set kembali ke undefined
+            NatsService.topicData = undefined;
+          }
         }
       }
 
