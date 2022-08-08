@@ -91,7 +91,7 @@ export class NatsService {
                 data,
               ),
             );
-  
+
             // Set kembali ke undefined
             NatsService.topicData = undefined;
           }

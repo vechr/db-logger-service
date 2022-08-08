@@ -1,4 +1,4 @@
 export interface IMaps {
-  latitude: number
-  longitude: number
+  latitude: number;
+  longitude: number;
 }
