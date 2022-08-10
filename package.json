@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rm -rf .build && nest build",
     "format": "prettier --write \"src/**/*.ts\"",
-    "watch": "nest start --watch",
+    "watch": "nest start --debug 0.0.0.0:9229 --watch",
     "dev": "nest start",
     "prepare": "husky install"
   },
