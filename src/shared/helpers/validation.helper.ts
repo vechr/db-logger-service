@@ -55,11 +55,11 @@ export class ValidationHelper {
   }
 
   private isScatter(data: any): data is IScatter {
-    return 'r' in data && 'y' in data;
+    return 'x' in data && 'y' in data;
   }
 
   private isBubble(data: any): data is IBubble {
-    return 'r' in data && 'y' in data && 'r' in data;
+    return 'x' in data && 'y' in data && 'r' in data;
   }
 
   private isMaps(data: any): data is IMaps {
