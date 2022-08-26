@@ -370,10 +370,10 @@
   resolved "https://registry.yarnpkg.com/@influxdata/influxdb-client-apis/-/influxdb-client-apis-1.29.0.tgz#9f94caf13b5cc97ddd45641879e5c0ff5eb5bd1c"
   integrity sha512-RJ8kZ3hArwuSE3CHwWQmbJSpxX645xswbQI3eM87RucgLZUjOtDJfA1vJDLUM1kIwSRe7R7EnC2T29YRP0+9oA==
 
-"@influxdata/influxdb-client@^1.28.0":
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/@influxdata/influxdb-client/-/influxdb-client-1.28.0.tgz#b6762dcfe6fce3ff640b3c23f667afa9de6aaee8"
-  integrity sha512-mTNsyBpVW3qT1dn9SH/LaQDlcotpSH+64aR00E7hONXyVntVUSLEbH0ijHs+Hwk1dQS+WmvNduhdeFr/vHZ+Kw==
+"@influxdata/influxdb-client@^1.29.0":
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/@influxdata/influxdb-client/-/influxdb-client-1.29.0.tgz#b7c758fb99a677876f357fb20841a6a1c760319a"
+  integrity sha512-9cup31a0S5Px1q5Bj9oyI8d84IWfv6nhldNuL8UNsiFPDD5SPw1QesPL4Oo+rR3Lbzbilt269NJOK5JOkmPyYA==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -1011,14 +1011,14 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/parser@^5.33.1":
-  version "5.33.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.33.1.tgz#e4b253105b4d2a4362cfaa4e184e2d226c440ff3"
-  integrity sha512-IgLLtW7FOzoDlmaMoXdxG8HOCByTBXrB1V2ZQYSEV1ggMmJfAkMWTwUjjzagS6OkfpySyhKFkBw7A9jYmcHpZA==
+"@typescript-eslint/parser@^5.35.1":
+  version "5.35.1"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.35.1.tgz#bf2ee2ebeaa0a0567213748243fb4eec2857f04f"
+  integrity sha512-XL2TBTSrh3yWAsMYpKseBYTVpvudNf69rPOWXWVBI08My2JVT5jR66eTt4IgQFHA/giiKJW5dUD4x/ZviCKyGg==
   dependencies:
-    "@typescript-eslint/scope-manager" "5.33.1"
-    "@typescript-eslint/types" "5.33.1"
-    "@typescript-eslint/typescript-estree" "5.33.1"
+    "@typescript-eslint/scope-manager" "5.35.1"
+    "@typescript-eslint/types" "5.35.1"
+    "@typescript-eslint/typescript-estree" "5.35.1"
     debug "^4.3.4"
 
 "@typescript-eslint/scope-manager@5.33.1":
