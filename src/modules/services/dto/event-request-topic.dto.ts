@@ -1,4 +1,4 @@
-export class QueryCreateEventDto {
+export class EventRequesTopicDto {
   constructor(public readonly topicId: string) {}
 
   toString() {

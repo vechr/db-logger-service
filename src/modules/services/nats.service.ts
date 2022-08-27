@@ -3,8 +3,8 @@ import { InfluxService } from './influx.service';
 import log from '@/shared/utils/log.util';
 import { KV, KvOptions } from 'nats/lib/nats-base-client/types';
 import { ITopic } from '@/shared/types';
-import { QueryCreateEventDto } from '../db-logger/dto/query-create-event.dto';
 import { ValidationHelper } from '@/shared/helpers/validation.helper';
+import { EventRequesTopicDto } from './dto/event-request-topic.dto';
 
 export class NatsService {
   constructor(
@@ -25,6 +25,29 @@ export class NatsService {
     }
   }
 
+  public async getTopicKV(topicId: string): Promise<any> {
+    const sc = StringCodec();
+    // Ambil informasi value dari key
+    const e = await NatsService.kv.get(topicId);
+
+    // Decoding value dari key
+    if (e) {
+      return JSON.parse(sc.decode(e?.value));
+    } else {
+      this.nats.publish(
+        'set.topic.widget.kv',
+        sc.encode(new EventRequesTopicDto(topicId).toString()),
+      );
+
+      const e2 = await NatsService.kv.get(topicId);
+      if (e2) {
+        return JSON.parse(sc.decode(e2?.value));
+      }
+    }
+
+    return undefined;
+  }
+
   async subscribe(subject: string) {
     try {
       const sc = StringCodec();
@@ -43,22 +66,7 @@ export class NatsService {
         let data = sc.decode(m.data);
 
         // Ambil informasi value dari key
-        const e = await NatsService.kv.get(subjectParses[6]);
-
-        // Decoding value dari key
-        if (e) {
-          NatsService.topicData = JSON.parse(sc.decode(e?.value));
-        } else {
-          this.nats.publish(
-            'set.topic.widget.kv',
-            sc.encode(new QueryCreateEventDto(subjectParses[6]).toString()),
-          );
-
-          const e2 = await NatsService.kv.get(subjectParses[6]);
-          if (e2) {
-            NatsService.topicData = JSON.parse(sc.decode(e2?.value));
-          }
-        }
+        NatsService.topicData = await this.getTopicKV(subjectParses[6]);
 
         if (NatsService.topicData === undefined) {
           log.error("topic's not defined ");
