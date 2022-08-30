@@ -10,7 +10,8 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "watch": "nest start --debug 0.0.0.0:9229 --watch",
     "dev": "nest start",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start:prod": "node .build/server"
   },
   "dependencies": {
     "@influxdata/influxdb-client": "^1.29.0",
