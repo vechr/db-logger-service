@@ -702,10 +702,10 @@
     multer "1.4.4-lts.1"
     tslib "2.4.0"
 
-"@nestjs/schematics@^9.0.0", "@nestjs/schematics@^9.0.2":
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/schematics/-/schematics-9.0.2.tgz#0b822094b25e87dfe19bad1f6a75719bc91550a7"
-  integrity sha512-pMjdz3YVX1XwTt065oVJjVno/mdbcfoY2nGyMh9lnLkYmAaY9OprT2VASi51AfcKvUhQXbQyuhk9Vvwzr/5NcA==
+"@nestjs/schematics@^9.0.0", "@nestjs/schematics@^9.0.3":
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/schematics/-/schematics-9.0.3.tgz#175218350fb3829c9a903e980046a11950310e24"
+  integrity sha512-kZrU/lrpVd2cnK8I3ibDb3Wi1ppl3wX3U3lVWoL+DzRRoezWKkh8upEL4q0koKmuXnsmLiu3UPxFeMOrJV7TSA==
   dependencies:
     "@angular-devkit/core" "14.2.1"
     "@angular-devkit/schematics" "14.2.1"
@@ -1033,14 +1033,6 @@
   version "5.36.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.36.2.tgz#a75eb588a3879ae659514780831370642505d1cd"
   integrity sha512-cNNP51L8SkIFSfce8B1NSUBTJTu2Ts4nWeWbFrdaqjmn9yKrAaJUBHkyTZc0cL06OFHpb+JZq5AUHROS398Orw==
-  dependencies:
-    "@typescript-eslint/types" "5.36.2"
-    "@typescript-eslint/visitor-keys" "5.36.2"
-
-"@typescript-eslint/type-utils@5.36.1":
-  version "5.36.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/type-utils/-/type-utils-5.36.1.tgz#016fc2bff6679f54c0b2df848a493f0ca3d4f625"
-  integrity sha512-xfZhfmoQT6m3lmlqDvDzv9TiCYdw22cdj06xY0obSznBsT///GK5IEZQdGliXpAOaRL34o8phEvXzEo/VJx13Q==
   dependencies:
     "@typescript-eslint/types" "5.36.2"
     "@typescript-eslint/visitor-keys" "5.36.2"
