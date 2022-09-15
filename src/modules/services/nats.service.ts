@@ -1,10 +1,10 @@
 import { NatsConnection, StringCodec } from 'nats';
-import { InfluxService } from './influx.service';
-import log from '@/shared/utils/log.util';
 import { KV, KvOptions } from 'nats/lib/nats-base-client/types';
+import { InfluxService } from './influx.service';
+import { EventRequesTopicDto } from './dto/event-request-topic.dto';
+import log from '@/shared/utils/log.util';
 import { ITopic } from '@/shared/types';
 import { ValidationHelper } from '@/shared/helpers/validation.helper';
-import { EventRequesTopicDto } from './dto/event-request-topic.dto';
 
 export class NatsService {
   constructor(
@@ -63,7 +63,7 @@ export class NatsService {
           topic = `/${subjectParses.filter((_, i) => i >= 8).join('/')}`;
 
         // Value from Subject
-        let data = sc.decode(m.data);
+        const data = sc.decode(m.data);
 
         // Ambil informasi value dari key
         NatsService.topicData = await this.getTopicKV(subjectParses[6]);

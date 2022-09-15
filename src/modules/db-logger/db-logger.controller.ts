@@ -1,8 +1,8 @@
 import { Controller, UseFilters } from '@nestjs/common';
 import { EventPattern, Payload } from '@nestjs/microservices';
+import { ExceptionFilter } from '../../shared/filters/rpc-exception.filter';
 import { DBLoggerService } from './db-logger.service';
 import { DBLoggerDto } from './dto';
-import { ExceptionFilter } from '../../shared/filters/rpc-exception.filter';
 
 @Controller()
 export class DBLoggerController {

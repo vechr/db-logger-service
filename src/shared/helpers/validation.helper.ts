@@ -25,7 +25,7 @@ export class ValidationHelper {
         widgetType === EWidget.POLAR ||
         widgetType === EWidget.RADAR
       ) {
-        const result: Number = Number(data);
+        const result = Number(data);
         if (Number.isNaN(result)) {
           this.log.error("Data wouldn't be store, since type is different");
           return false;

@@ -1,3 +1,5 @@
 {
-  "src/**/*.{js,ts}": ["prettier --write \"src/**/*.ts\""]
+  "src/**/*.{js,ts}": [
+    "prettier --check \"src/**/*.ts\""
+  ]
 }

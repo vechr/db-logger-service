@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InfluxDB } from '@influxdata/influxdb-client';
-import { DBLoggerDto } from './dto';
 import { RpcException } from '@nestjs/microservices';
+import { DBLoggerDto } from './dto';
 import appConstant from '@/constants/constant';
 import { InfluxHelper } from '@/shared/helpers/influx.helper';
 
@@ -14,7 +14,7 @@ export class DBLoggerService {
   async queryDBTopic(dto: DBLoggerDto): Promise<any> {
     const queryApi = (await this.influx).getQueryApi(this.org);
 
-    const fluxQuery: string = `from(bucket: "${this.bucket}") 
+    const fluxQuery = `from(bucket: "${this.bucket}") 
       |> range(start: 0)
       |> filter(fn: (r) => r._measurement == "${dto.topic}")
       |> filter(fn: (r) => r.topicId == "${dto.topicId}")

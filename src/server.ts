@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { HttpModule } from './http.module';
-import appConstant from '@/constants/constant';
 import log from './shared/utils/log.util';
 import { NatsModule } from './nats.module';
 import { InfluxService } from './modules/services/influx.service';
@@ -9,6 +8,7 @@ import { InfluxHelper } from './shared/helpers/influx.helper';
 import { NatsHelper } from './shared/helpers/nats.helper';
 import { NatsService } from './modules/services/nats.service';
 import { ValidationHelper } from './shared/helpers/validation.helper';
+import appConstant from '@/constants/constant';
 
 const httpServer = new Promise(async (resolve, reject) => {
   try {
