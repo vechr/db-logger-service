@@ -29,7 +29,7 @@
     "dotenv": "^16.0.2",
     "env-var": "^7.3.0",
     "nats": "^2.7.1",
-    "pino": "^8.5.0",
+    "pino": "^8.6.0",
     "pino-http": "^8.2.0",
     "pino-pretty": "^9.1.0",
     "reflect-metadata": "^0.1.13",
