@@ -59,6 +59,6 @@ const natsServer = new Promise(async (resolve, reject) => {
   );
   await natsService.createBucket('kremes_topics', { history: 5 });
   await natsService.subscribe(
-    'kreMES.DashboardID.*.DeviceID.*.TopicID.*.Topic.>',
+    'Vechr.DashboardID.*.DeviceID.*.TopicID.*.Topic.>',
   );
 })();
