@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@influxdata/influxdb-client": "^1.29.0",
-    "@influxdata/influxdb-client-apis": "^1.29.0",
+    "@influxdata/influxdb-client-apis": "^1.30.0",
     "@nestjs/common": "^8.4.3",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.4.3",
