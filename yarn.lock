@@ -442,10 +442,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@influxdata/influxdb-client-apis@^1.29.0":
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/@influxdata/influxdb-client-apis/-/influxdb-client-apis-1.29.0.tgz#9f94caf13b5cc97ddd45641879e5c0ff5eb5bd1c"
-  integrity sha512-RJ8kZ3hArwuSE3CHwWQmbJSpxX645xswbQI3eM87RucgLZUjOtDJfA1vJDLUM1kIwSRe7R7EnC2T29YRP0+9oA==
+"@influxdata/influxdb-client-apis@^1.30.0":
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/@influxdata/influxdb-client-apis/-/influxdb-client-apis-1.30.0.tgz#07ff2b99229d305656704cc274403d0532b8c882"
+  integrity sha512-PAkV5ATjhcLy2cY5N2iVTZc4PkrGBJW0eGtuTX6jYcH6MwfLta+piMcTm+7+hdUKToIZQVyofUnd1AmnvgIYzg==
 
 "@influxdata/influxdb-client@^1.29.0":
   version "1.29.0"
