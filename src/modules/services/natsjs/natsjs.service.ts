@@ -1,5 +1,9 @@
 import { connect, ConnectionOptions, NatsConnection, Subscription } from 'nats';
-import { KV, SubscriptionOptions } from 'nats/lib/nats-base-client/types';
+import {
+  KV,
+  KvOptions,
+  SubscriptionOptions,
+} from 'nats/lib/nats-base-client/types';
 import { Injectable } from '@nestjs/common';
 import { IBaseNatsClient } from './interfaces/base.interface';
 import { sleep } from '@/shared/utils/sleep.util';
@@ -51,5 +55,20 @@ export class NatsjsService implements IBaseNatsClient {
       .catch((err) => {
         this.logger.error(`subscription closed with an error ${err.message}`);
       });
+  }
+
+  async createBucket(
+    nameBucket: string,
+    opts?: Partial<KvOptions>,
+  ): Promise<void> {
+    try {
+      const js = this.nats.jetstream();
+      await js.views.kv(nameBucket, opts).then((kv) => {
+        this.kv = kv;
+        this.logger.info(`Success create bucket kv: ${nameBucket}!`);
+      });
+    } catch (error) {
+      this.logger.error(`NATS ${JSON.stringify(error)}`);
+    }
   }
 }
