@@ -4,12 +4,10 @@ import {
   KvOptions,
   SubscriptionOptions,
 } from 'nats/lib/nats-base-client/types';
-import { Injectable } from '@nestjs/common';
 import { IBaseNatsClient } from './interfaces/base.interface';
 import { sleep } from '@/shared/utils/sleep.util';
 import log, { ILog } from '@/shared/utils/log.util';
 
-@Injectable()
 export class NatsjsService implements IBaseNatsClient {
   public nats: NatsConnection;
   public subscriber: Subscription;
@@ -39,13 +37,13 @@ export class NatsjsService implements IBaseNatsClient {
     }
   }
 
-  async subscribe(
+  subscribe(
     subject: string,
     onSubscribe: (sub: Subscription) => Promise<void>,
     subscriberConfig?: SubscriptionOptions,
   ) {
     this.subscriber = this.nats.subscribe(subject, subscriberConfig);
-    await onSubscribe(this.subscriber);
+    onSubscribe(this.subscriber);
     this.logger.info(`Success subscribe to: ${subject}!`);
 
     this.subscriber.closed

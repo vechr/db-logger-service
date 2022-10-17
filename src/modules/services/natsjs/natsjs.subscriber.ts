@@ -28,7 +28,7 @@ export class NatsSubscriber
 
   async onModuleInit() {
     await this.connect(this.brokerConfig);
-    await this.createBucket('kremes_topics', this.bucketConfig);
+    await this.createBucket('vechr_topics', this.bucketConfig);
     await this.subscribeDBLogger(
       'Vechr.DashboardID.*.DeviceID.*.TopicID.*.Topic.>',
       this.kv,
