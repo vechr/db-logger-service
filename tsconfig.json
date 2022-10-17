@@ -9,7 +9,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@modules/*": ["./src/modules/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@shared/*": ["./src/shared/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@constants/*": ["./src/constants/*"]
     },
     "strictPropertyInitialization": false,
     "resolveJsonModule": true,

@@ -1,19 +1,6 @@
+import log from '../utils/log.util';
 import { EWidget, IBubble, IMaps, IScatter } from '@/shared/types/index';
-
-type LogPayload = string | Record<string, any>;
-
-export interface ILog {
-  info: (message: LogPayload, ...args: LogPayload[]) => void;
-  warn: (message: LogPayload, ...args: LogPayload[]) => void;
-  fatal: (message: LogPayload, error?: unknown) => void;
-  error: (message: LogPayload, error?: unknown) => void;
-  http: (message: LogPayload, ...args: LogPayload[]) => void;
-  verbose: (message: LogPayload, ...args: LogPayload[]) => void;
-  debug: (message: LogPayload, ...args: LogPayload[]) => void;
-}
-
 export class ValidationHelper {
-  constructor(private log: ILog) {}
   validation(widgetType: string, data: string): boolean {
     try {
       if (
@@ -27,29 +14,29 @@ export class ValidationHelper {
       ) {
         const result = Number(data);
         if (Number.isNaN(result)) {
-          this.log.error("Data wouldn't be store, since type is different");
+          log.error("Data wouldn't be store, since type is different");
           return false;
         }
       } else if (widgetType === EWidget.SCATTER) {
         if (!this.isScatter(JSON.parse(data))) {
-          this.log.error("Data wouldn't be store, since type is not Scatter");
+          log.error("Data wouldn't be store, since type is not Scatter");
           return false;
         }
       } else if (widgetType === EWidget.BUBBLE) {
         if (!this.isBubble(JSON.parse(data))) {
-          this.log.error("Data wouldn't be store, since type is not Bubble");
+          log.error("Data wouldn't be store, since type is not Bubble");
           return false;
         }
       } else if (widgetType === EWidget.MAPS) {
         if (!this.isMaps(JSON.parse(data))) {
-          this.log.error("Data wouldn't be store, since type is not Maps");
+          log.error("Data wouldn't be store, since type is not Maps");
           return false;
         }
       }
 
       return true;
     } catch (error) {
-      this.log.error(`${error}`);
+      log.error(`${error}`);
       return false;
     }
   }

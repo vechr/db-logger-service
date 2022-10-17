@@ -81,4 +81,14 @@ export const log = {
   },
 };
 
+export interface ILog {
+  info: (message: LogPayload, ...args: LogPayload[]) => void;
+  warn: (message: LogPayload, ...args: LogPayload[]) => void;
+  fatal: (message: LogPayload, error?: unknown) => void;
+  error: (message: LogPayload, error?: unknown) => void;
+  http: (message: LogPayload, ...args: LogPayload[]) => void;
+  verbose: (message: LogPayload, ...args: LogPayload[]) => void;
+  debug: (message: LogPayload, ...args: LogPayload[]) => void;
+}
+
 export default log;
