@@ -10,14 +10,14 @@ import { OnModuleInit } from '@nestjs/common';
 import { StringCodec } from 'nats';
 import { DBLoggerBusinessLogic } from '../db-logger.logic';
 import { NatsjsService } from './natsjs.service';
-import log, { ILog } from '@/shared/utils/log.util';
+import { ISubscriber } from './interfaces/subscriber.interface';
 import appConfig from '@/constants/constant';
 import { DBLoggerService } from '@/modules/db-logger/db-logger.service';
 
 @Injectable()
 export class NatsSubscriber
   extends NatsjsService
-  implements OnApplicationShutdown, OnModuleInit
+  implements OnApplicationShutdown, OnModuleInit, ISubscriber
 {
   constructor(private readonly dbLoggerService: DBLoggerService) {
     super();
@@ -30,7 +30,6 @@ export class NatsSubscriber
     await this.connect(this.brokerConfig);
     await this.createBucket('kremes_topics', this.bucketConfig);
     await this.subscribeDBLogger(
-      log,
       'Vechr.DashboardID.*.DeviceID.*.TopicID.*.Topic.>',
       this.kv,
       this.nats,
@@ -43,13 +42,12 @@ export class NatsSubscriber
   }
 
   async subscribeDBLogger(
-    logger: ILog,
     subject: string,
     kv: KV,
     nats: NatsConnection,
     dbLoggerService: DBLoggerService,
   ) {
-    this.subscribe(subject, async (sub: Subscription): Promise<void> => {
+    await this.subscribe(subject, async (sub: Subscription): Promise<void> => {
       for await (const m of sub) {
         const thingsLogic = new DBLoggerBusinessLogic(
           kv,
@@ -66,14 +64,14 @@ export class NatsSubscriber
         await thingsLogic.checkMessage(subjectParses[6], data, subjectParses);
       }
     });
-    logger.info(`Success subscribe to: ${subject}!`);
+    this.logger.info(`Success subscribe to: ${subject}!`);
 
     this.subscriber.closed
       .then(() => {
-        logger.info('subscription closed');
+        this.logger.info('subscription closed');
       })
       .catch((err) => {
-        logger.error(`subscription closed with an error ${err.message}`);
+        this.logger.error(`subscription closed with an error ${err.message}`);
       });
   }
 

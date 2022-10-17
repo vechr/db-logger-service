@@ -1,23 +1,13 @@
-import { Subscription } from 'nats';
-import {
-  KV,
-  KvOptions,
-  NatsConnection,
-  SubscriptionOptions,
-} from 'nats/lib/nats-base-client/types';
+import { KV, KvOptions, NatsConnection } from 'nats/lib/nats-base-client/types';
 import { IBaseNatsClient } from './base.interface';
 import { DBLoggerService } from '@/modules/db-logger/db-logger.service';
 
 export class ISubscriber extends IBaseNatsClient {
-  subscribe: (
+  subscribeDBLogger: (
     subject: string,
-    onSubscribe: (
-      subscriber: Subscription,
-      kv: KV,
-      nats: NatsConnection,
-      influx: DBLoggerService,
-    ) => Promise<void>,
-    subscriberConfig?: SubscriptionOptions,
+    kv: KV,
+    nats: NatsConnection,
+    dbLoggerService: DBLoggerService,
   ) => Promise<void>;
   createBucket: (
     nameBucket: string,
