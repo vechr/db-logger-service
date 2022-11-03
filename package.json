@@ -17,7 +17,7 @@
     "start:prod": "node .build/server"
   },
   "dependencies": {
-    "@influxdata/influxdb-client": "^1.31.0",
+    "@influxdata/influxdb-client": "^1.32.0",
     "@influxdata/influxdb-client-apis": "^1.32.0",
     "@nestjs/common": "^9.1.6",
     "@nestjs/config": "^2.2.0",
