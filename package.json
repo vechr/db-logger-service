@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@influxdata/influxdb-client": "^1.33.0",
-    "@influxdata/influxdb-client-apis": "^1.32.0",
+    "@influxdata/influxdb-client-apis": "^1.33.0",
     "@nestjs/common": "^9.2.1",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.2.1",
@@ -40,7 +40,7 @@
     "pino-pretty": "^9.1.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.5.7"
+    "rxjs": "^7.6.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.1.5",
@@ -48,7 +48,7 @@
     "@nestjs/testing": "^9.2.1",
     "@types/express": "^4.17.14",
     "@types/jest": "27.4.1",
-    "@types/node": "^18.11.10",
+    "@types/node": "^18.11.12",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
@@ -59,7 +59,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.2",
     "jest": "^27.2.5",
-    "lint-staged": "^13.0.4",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "semantic-release": "^19.0.5",
     "source-map-support": "^0.5.20",
