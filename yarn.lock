@@ -5820,12 +5820,12 @@ mute-stream@0.0.8, mute-stream@~0.0.4:
   resolved "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-nats@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/nats/-/nats-2.9.2.tgz#16d1f721da6d123d3e04fb1236b9444ef3082df1"
-  integrity sha512-Ee1HVq/FsQrHSh0hvYJ1PhG+DtAhVG0kCXVvqEj8iL/qUge5IgGrwgXcXCBIlvp26PlWYyoMydMiIefYTD0aNw==
+nats@^2.10.2:
+  version "2.10.2"
+  resolved "https://registry.yarnpkg.com/nats/-/nats-2.10.2.tgz#f60a6658fcc503d9f9064d759f68272daf229ad3"
+  integrity sha512-U+3bjrYT/MqEkWDoHH9ql2rm8qt4s8z49yUjvryBvjEV0GtObTqa+BUpcTK6v2SE5fv09qcP7BcfUK0k0/gB0g==
   dependencies:
-    nkeys.js "1.0.3"
+    nkeys.js "1.0.4"
     web-streams-polyfill "^3.2.1"
 
 natural-compare-lite@^1.4.0:
@@ -5853,10 +5853,10 @@ nerf-dart@^1.0.0:
   resolved "https://registry.yarnpkg.com/nerf-dart/-/nerf-dart-1.0.0.tgz#e6dab7febf5ad816ea81cf5c629c5a0ebde72c1a"
   integrity sha512-EZSPZB70jiVsivaBLYDCyntd5eH8NTSMOn3rB+HxwdmKThGELLdYv8qVIMWvZEFy9w8ZZpW9h9OB32l1rGtj7g==
 
-nkeys.js@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/nkeys.js/-/nkeys.js-1.0.3.tgz#487688a6f4f36f4a2796eee000cc6e54e122cb08"
-  integrity sha512-p5Bpb/acPaQmCrbe4gNmMBY/naZJV8Q7m2B9UkXT8BQRC6wjX8zqD2ya8eZu9mpSXQffodV46HCP9OckmxcwYA==
+nkeys.js@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/nkeys.js/-/nkeys.js-1.0.4.tgz#0902bd44129569c4bd3857ce87d8b69f1c0e7253"
+  integrity sha512-xeNDE6Ha5I3b3PnlHyT9AbmBxq3Vb9KHzmaI/h4IXYg0PUVZSUXNHNhTfU20oBsubw2ZdV/1AdC6hnRuMiZfMQ==
   dependencies:
     tweetnacl "1.0.3"
 
