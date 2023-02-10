@@ -35,7 +35,7 @@
     "dotenv": "^16.0.3",
     "env-var": "^7.3.0",
     "nats": "^2.9.2",
-    "pino": "^8.8.0",
+    "pino": "^8.10.0",
     "pino-http": "^8.3.0",
     "pino-pretty": "^9.1.1",
     "reflect-metadata": "^0.1.13",
