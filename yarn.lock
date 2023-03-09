@@ -5820,13 +5820,12 @@ mute-stream@0.0.8, mute-stream@~0.0.4:
   resolved "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-nats@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/nats/-/nats-2.9.2.tgz#16d1f721da6d123d3e04fb1236b9444ef3082df1"
-  integrity sha512-Ee1HVq/FsQrHSh0hvYJ1PhG+DtAhVG0kCXVvqEj8iL/qUge5IgGrwgXcXCBIlvp26PlWYyoMydMiIefYTD0aNw==
+nats@^2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/nats/-/nats-2.13.0.tgz#0f73fb610628f2b815f2ed46dc16bde57613a299"
+  integrity sha512-2ljzl1OS3DnfFLGDg91aiHeBXeARLeq9LFpOnCypRshjltIIT0v6VzXcKSR50rkdYfabSA3HwNZbwn/N0SVFYg==
   dependencies:
-    nkeys.js "1.0.3"
-    web-streams-polyfill "^3.2.1"
+    nkeys.js "1.0.5"
 
 natural-compare-lite@^1.4.0:
   version "1.4.0"
@@ -5853,10 +5852,10 @@ nerf-dart@^1.0.0:
   resolved "https://registry.yarnpkg.com/nerf-dart/-/nerf-dart-1.0.0.tgz#e6dab7febf5ad816ea81cf5c629c5a0ebde72c1a"
   integrity sha512-EZSPZB70jiVsivaBLYDCyntd5eH8NTSMOn3rB+HxwdmKThGELLdYv8qVIMWvZEFy9w8ZZpW9h9OB32l1rGtj7g==
 
-nkeys.js@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/nkeys.js/-/nkeys.js-1.0.3.tgz#487688a6f4f36f4a2796eee000cc6e54e122cb08"
-  integrity sha512-p5Bpb/acPaQmCrbe4gNmMBY/naZJV8Q7m2B9UkXT8BQRC6wjX8zqD2ya8eZu9mpSXQffodV46HCP9OckmxcwYA==
+nkeys.js@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/nkeys.js/-/nkeys.js-1.0.5.tgz#3024bde671eb33be0316ff2d5abe8b8cec960158"
+  integrity sha512-u25YnRPHiGVsNzwyHnn+PT90sgAhnS8jUJ1nxmkHMFYCJ6+Ic0lv291w7uhRBpJVJ3PH2GWbYqA151lGCRrB5g==
   dependencies:
     tweetnacl "1.0.3"
 
@@ -8192,11 +8191,6 @@ wcwidth@^1.0.0, wcwidth@^1.0.1:
   integrity sha1-8LDc+RW8X/FSivrbLA4XtTLaL+g=
   dependencies:
     defaults "^1.0.3"
-
-web-streams-polyfill@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.2.1.tgz#71c2718c52b45fd49dbeee88634b3a60ceab42a6"
-  integrity sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
