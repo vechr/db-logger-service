@@ -23,7 +23,15 @@ export class NatsSubscriber
     super();
   }
 
-  private brokerConfig: ConnectionOptions = { servers: appConfig.NATS_URL };
+  private brokerConfig: ConnectionOptions = {
+    servers: appConfig.NATS_URL,
+    maxReconnectAttempts: 10,
+    tls: {
+      caFile: appConfig.NATS_CA,
+      keyFile: appConfig.NATS_KEY,
+      certFile: appConfig.NATS_CERT,
+    },
+  };
   private bucketConfig: Partial<KvOptions> = { history: 5 };
 
   async onModuleInit() {

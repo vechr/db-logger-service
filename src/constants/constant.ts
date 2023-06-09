@@ -10,4 +10,7 @@ export default Object.freeze({
   INFLUX_TOKEN: env.get('INFLUX_TOKEN').required().asString(),
   INFLUX_ORG: env.get('INFLUX_ORG').required().asString(),
   INFLUX_BUCKET: env.get('INFLUX_BUCKET').required().asString(),
+  NATS_CA: env.get('NATS_CA').required().asString(),
+  NATS_KEY: env.get('NATS_KEY').required().asString(),
+  NATS_CERT: env.get('NATS_CERT').required().asString(),
 });
