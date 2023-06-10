@@ -67,6 +67,6 @@ jobs:
       env:
         GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
       run: |
-        gcloud auth configure-docker asia-southeast2-docker.pkg.dev
-        docker build -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot/db-logger-service:latest asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot/db-logger-service:${{ steps.db-logger-service.outputs.release }} .
-        docker push asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot/db-logger-service:latest asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot/db-logger-service:${{ steps.db-logger-service.outputs.release }}
+        gcloud auth configure-docker asia-southeast2-docker.pkg.dev --quiet
+        DOCKER_BUILDKIT=1 docker build -f ./docker/Dockerfile.prod -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service:latest -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service:${{ steps.db-logger-service.outputs.release }} .
+        docker push asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service
