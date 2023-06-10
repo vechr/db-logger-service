@@ -80,5 +80,5 @@ jobs:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'Project {{ EVENT_PAYLOAD.repository.full_name }} generate container successfully!. Try command ` docker pull asia-southeast2-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/vechr-iiot-repository/{{ $SERVICE_NAME }}:latest ` to pull the lastest image.'
+        args: 'Project {{ EVENT_PAYLOAD.repository.full_name }} generate container successfully!. Try command ` docker pull asia-southeast2-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/vechr-iiot-repository/${{ env.SERVICE_NAME }}:latest ` to pull the lastest image.'
 
