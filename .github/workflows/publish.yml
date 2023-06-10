@@ -70,3 +70,11 @@ jobs:
         gcloud auth configure-docker asia-southeast2-docker.pkg.dev --quiet
         DOCKER_BUILDKIT=1 docker build -f ./docker/Dockerfile.prod -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service:latest -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service:${{ steps.db-logger-service.outputs.release }} .
         docker push --all-tags asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service
+
+    - 
+      name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'Project {{ EVENT_PAYLOAD.repository.full_name }} generate container successfully!. Try command ` docker pull asia-southeast2-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/vechr-iiot-repository/db-logger-service:latest ` to pull the lastest image.'
