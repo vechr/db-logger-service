@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  SERVICE_NAME: db-logger-service
+
 jobs:
   test-build:
     runs-on: ${{ matrix.os }}
@@ -50,7 +53,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - 
-      id: db-logger-service
+      id: release-service
       name: Get Latest Release
       uses: pozetroninc/github-action-get-latest-release@v0.5.0
       with:
@@ -68,8 +71,8 @@ jobs:
         GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
       run: |
         gcloud auth configure-docker asia-southeast2-docker.pkg.dev --quiet
-        DOCKER_BUILDKIT=1 docker build -f ./docker/Dockerfile.prod -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service:latest -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service:${{ steps.db-logger-service.outputs.release }} .
-        docker push --all-tags asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/db-logger-service
+        DOCKER_BUILDKIT=1 docker build -f ./docker/Dockerfile.prod -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/$SERVICE_NAME:latest -t asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/$SERVICE_NAME:${{ steps.release-service.outputs.release }} .
+        docker push --all-tags asia-southeast2-docker.pkg.dev/$GOOGLE_PROJECT/vechr-iiot-repository/$SERVICE_NAME
 
     - 
       name: Discord notification
@@ -77,4 +80,5 @@ jobs:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'Project {{ EVENT_PAYLOAD.repository.full_name }} generate container successfully!. Try command ` docker pull asia-southeast2-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/vechr-iiot-repository/db-logger-service:latest ` to pull the lastest image.'
+        args: 'Project {{ EVENT_PAYLOAD.repository.full_name }} generate container successfully!. Try command ` docker pull asia-southeast2-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/vechr-iiot-repository/{{ $SERVICE_NAME }}:latest ` to pull the lastest image.'
+
