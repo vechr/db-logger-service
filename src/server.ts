@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { HttpModule } from './app.module';
 import log from './shared/utils/log.util';
+import otelSDK from './tracing';
 import appConstant from '@/constants/constant';
 
 const httpServer = new Promise(async (resolve, reject) => {
@@ -40,5 +41,7 @@ const httpServer = new Promise(async (resolve, reject) => {
 });
 
 (async function () {
+  if (appConstant.OTLP_HTTP_URL && appConstant.OTLP_HTTP_URL != '')
+    otelSDK.start();
   await Promise.all([httpServer]);
 })();
