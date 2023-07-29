@@ -8,6 +8,7 @@ import {
 } from 'nats/lib/nats-base-client/types';
 import { OnModuleInit } from '@nestjs/common';
 import { StringCodec } from 'nats';
+import { OtelInstanceCounter, OtelMethodCounter } from 'nestjs-otel';
 import { DBLoggerBusinessLogic } from '../db-logger.logic';
 import { NatsjsService } from './natsjs.service';
 import { ISubscriber } from './interfaces/subscriber.interface';
@@ -15,6 +16,7 @@ import appConfig from '@/constants/constant';
 import { DBLoggerService } from '@/modules/db-logger/db-logger.service';
 
 @Injectable()
+@OtelInstanceCounter()
 export class NatsSubscriber
   extends NatsjsService
   implements OnApplicationShutdown, OnModuleInit, ISubscriber
@@ -49,6 +51,7 @@ export class NatsSubscriber
     await this.disconnect(this.brokerConfig);
   }
 
+  @OtelMethodCounter()
   async subscribeDBLogger(
     subject: string,
     kv: KV,
