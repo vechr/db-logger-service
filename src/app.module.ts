@@ -1,11 +1,13 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { OpenTelemetryModule } from 'nestjs-otel';
 import { LoggerModule } from 'nestjs-pino';
+import { TerminusModule } from '@nestjs/terminus';
 import { DBLoggerModule } from './modules/db-logger/db-logger.module';
 import { InfluxModule } from './modules/services/influxdb/influx.module';
 import { NatsjsModule } from './modules/services/natsjs/natsjs.module';
 import { InstrumentMiddleware } from './shared/middlewares/instrument.middleware';
 import { logger } from './shared/utils/log.util';
+import HealthModule from './modules/health/health.module';
 
 const OpenTelemetryModuleConfig = OpenTelemetryModule.forRoot({
   metrics: {
@@ -41,6 +43,8 @@ const PinoLoggerModule = LoggerModule.forRoot({
     NatsjsModule,
     InfluxModule,
     DBLoggerModule,
+    TerminusModule,
+    HealthModule,
   ],
 })
 export class HttpModule {
