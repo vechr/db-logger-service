@@ -14,7 +14,7 @@ export class DBLoggerController {
   @EventPattern('getData.query')
   @Span('[DB LOGGER SERVICE]: Query Data')
   @OtelMethodCounter()
-  queryDBTopic(@Payload() dto: DBLoggerQuery): Promise<any> {
-    return this.dbLoggerService.queryDBTopic(dto);
+  async queryDBTopic(@Payload() dto: DBLoggerQuery): Promise<any> {
+    return await this.dbLoggerService.queryDBTopic(dto);
   }
 }

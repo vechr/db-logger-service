@@ -40,7 +40,7 @@ export class DBLoggerService {
       |> filter(fn: (r) => r.dashboardId == "${dto.dashboardId}")
       |> filter(fn: (r) => r.deviceId == "${dto.deviceId}")`;
 
-    return this.influxService.queryApi
+    return await this.influxService.queryApi
       .collectRows(fluxQuery)
       .then((data) => {
         return data;
