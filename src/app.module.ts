@@ -1,13 +1,11 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { OpenTelemetryModule } from 'nestjs-otel';
-import { LoggerModule } from 'nestjs-pino';
 import { TerminusModule } from '@nestjs/terminus';
-import { DBLoggerModule } from './modules/db-logger/db-logger.module';
-import { InfluxModule } from './modules/services/influxdb/influx.module';
-import { NatsjsModule } from './modules/services/natsjs/natsjs.module';
-import { InstrumentMiddleware } from './shared/middlewares/instrument.middleware';
-import { logger } from './shared/utils/log.util';
-import HealthModule from './modules/health/health.module';
+import { WinstonModule } from 'nest-winston';
+import HealthModule from './core/base/frameworks/health/health.module';
+import { winstonModuleOptions } from './core/base/frameworks/shared/utils/log.util';
+import { RegistrationModule } from './modules/registration.module';
+import { InstrumentMiddleware } from './core/base/frameworks/shared/middlewares/instrument.middleware';
 
 const OpenTelemetryModuleConfig = OpenTelemetryModule.forRoot({
   metrics: {
@@ -18,33 +16,19 @@ const OpenTelemetryModuleConfig = OpenTelemetryModule.forRoot({
   },
 });
 
-const PinoLoggerModule = LoggerModule.forRoot({
-  pinoHttp: {
-    customLogLevel: function (_, res, err) {
-      if (res.statusCode >= 400 && res.statusCode < 500) {
-        return 'error';
-      } else if (res.statusCode >= 500 || err) {
-        return 'fatal';
-      } else if (res.statusCode >= 300 && res.statusCode < 400) {
-        return 'warn';
-      } else if (res.statusCode >= 200 && res.statusCode < 300) {
-        return 'info';
-      }
-      return 'debug';
-    },
-    logger,
-  },
+const WinstonLoggerModule = WinstonModule.forRootAsync({
+  useFactory: () => winstonModuleOptions,
 });
 
 @Module({
   imports: [
-    PinoLoggerModule,
-    OpenTelemetryModuleConfig,
-    NatsjsModule,
-    InfluxModule,
-    DBLoggerModule,
+    // framework
     TerminusModule,
+    OpenTelemetryModuleConfig,
+    WinstonLoggerModule,
     HealthModule,
+
+    RegistrationModule,
   ],
 })
 export class HttpModule {

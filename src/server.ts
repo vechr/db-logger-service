@@ -1,9 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import HttpExceptionFilter from '@filters/http.filter';
+import UnknownExceptionsFilter from '@filters/unknown.filter';
+import * as expressWinston from 'express-winston';
 import { HttpModule } from './app.module';
-import log from './shared/utils/log.util';
 import otelSDK from './tracing';
-import appConstant from '@/constants/constant';
+import log, {
+  winstonExpressOptions,
+} from './core/base/frameworks/shared/utils/log.util';
+import appConstant from '@/config/app.config';
+import appConfig from '@/config/app.config';
+
+const printConfig = () => {
+  log.info(`Connected to Grafana Loki: ${appConfig.LOKI_HOST}`);
+  log.info(`Connected to Grafana Tempo: ${appConfig.OTLP_HTTP_URL}`);
+};
 
 const httpServer = new Promise(async (resolve, reject) => {
   try {
@@ -21,18 +32,49 @@ const httpServer = new Promise(async (resolve, reject) => {
         },
       },
     });
-    await app
-      .startAllMicroservices()
-      .then(() =>
-        log.info(`Nest app NATS started at :${appConstant.NATS_URL} `),
-      );
-    app.enableCors();
+
+    // Enable CORS for security
+    app.enableCors({
+      credentials: true,
+      origin: true,
+    });
+
+    // Use Exception Filter
+    app.useGlobalFilters(
+      new UnknownExceptionsFilter(),
+      new HttpExceptionFilter(),
+    );
+
+    // Ignore Favicon
+    app.use(function (
+      req: { originalUrl: string },
+      res: { sendStatus: (arg0: number) => any },
+      next: () => void,
+    ) {
+      if (
+        req.originalUrl &&
+        req.originalUrl.split('/').pop() === 'favicon.ico'
+      ) {
+        return res.sendStatus(204);
+      }
+      next();
+    });
+
+    const port = process.env.PORT ?? appConfig.APP_PORT;
+
+    // express-winston logger makes sense BEFORE the router
+    app.use(expressWinston.logger(winstonExpressOptions));
 
     await app
-      .listen(appConstant.APP_PORT)
-      .then(() =>
-        log.info(`Nest app http started at PORT: ${appConstant.APP_PORT}`),
-      );
+      .startAllMicroservices()
+      .then(() => log.info(`Nest app NATS started at :${appConfig.NATS_URL} `));
+
+    await app
+      .listen(port)
+      .then(() => log.info(`Nest app http started at PORT: ${port}`));
+
+    // print config
+    printConfig();
 
     resolve(true);
   } catch (error) {
