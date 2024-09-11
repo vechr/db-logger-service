@@ -1,4 +1,4 @@
-FROM node:18-slim As development
+FROM node:20-slim As development
 
 RUN apt-get update
 RUN apt-get install -y openssl
@@ -14,7 +14,7 @@ COPY --chown=node:node . .
 
 USER node
 
-FROM node:18-slim As build
+FROM node:20-slim As build
 
 RUN apt-get update
 RUN apt-get install -y openssl
@@ -38,7 +38,7 @@ RUN yarn install --frozen-lockfile
 
 USER node
 
-FROM node:18-slim As production
+FROM node:20-slim As production
 
 RUN apt-get update
 RUN apt-get install -y openssl
