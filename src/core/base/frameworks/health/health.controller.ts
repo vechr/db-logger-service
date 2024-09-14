@@ -9,12 +9,16 @@ import {
 import {
   HealthCheckService,
   HealthCheck,
+  MemoryHealthIndicator,
   HealthCheckResult,
 } from '@nestjs/terminus';
 
 @Controller()
 export default class HealthController {
-  constructor(private health: HealthCheckService) {}
+  constructor(
+    private health: HealthCheckService,
+    private memory: MemoryHealthIndicator,
+  ) {}
 
   @Version(VERSION_NEUTRAL)
   @Get('health')
@@ -33,6 +37,8 @@ export default class HealthController {
   }
 
   private async healthCheck(): Promise<HealthCheckResult> {
-    return this.health.check([]);
+    return this.health.check([
+      () => this.memory.checkHeap('memory_heap', 150 * 1024 * 1024),
+    ]);
   }
 }
